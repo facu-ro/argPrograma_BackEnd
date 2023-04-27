@@ -3,6 +3,7 @@ package com.argprograma.argprograma.service;
 
 import com.argprograma.argprograma.model.Experiencia;
 import com.argprograma.argprograma.model.Persona;
+import com.argprograma.argprograma.model.Presentacion;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -44,9 +45,9 @@ public class experienciaService {
 
 
     
-    public List<Experiencia> buscarPorPersona(Persona perso){
+    public List<Experiencia> buscarPorPresentacion(Presentacion presen){
         
-        return expeRepo.findByPersona(perso);
+        return expeRepo.findByPresentacion(presen);
     
        
     }

@@ -2,6 +2,7 @@
 package com.argprograma.argprograma.service;
 
 import com.argprograma.argprograma.model.Persona;
+import com.argprograma.argprograma.model.Presentacion;
 import com.argprograma.argprograma.model.Proyecto;
 import com.argprograma.argprograma.repository.IproyectoRepository;
 import java.util.List;
@@ -43,9 +44,9 @@ public class proyectoService {
     
     
     
-    public List<Proyecto> buscarPorPersona(Persona perso){
+    public List<Proyecto> buscarPorPresentacion(Presentacion presen){
         
-        return proyectoRepo.findByPersona(perso);
+        return proyectoRepo.findByPresentacion(presen);
     
     }
     

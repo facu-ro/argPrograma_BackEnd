@@ -2,8 +2,10 @@
 package com.argprograma.argprograma.controller;
 
 import com.argprograma.argprograma.model.Persona;
+import com.argprograma.argprograma.model.Presentacion;
 import com.argprograma.argprograma.model.Proyecto;
 import com.argprograma.argprograma.service.personaService;
+import com.argprograma.argprograma.service.presentacionService;
 import com.argprograma.argprograma.service.proyectoService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,26 +15,28 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
+@RequestMapping("/api")
 public class Cproyecto {
     
     @Autowired
     private proyectoService proyecServ;
     
     @Autowired
-    private personaService persoServ;
+    private presentacionService presenServ;
     
     
     
-    @PostMapping("proyecto/nuevaProyecto-persona/{id_persona}")
-    public void agregar(@PathVariable int id_persona,@RequestBody Proyecto proyec ){
+    @PostMapping("proyecto/nuevaProyecto-Presentacion/{fk_presentacion}")
+    public void agregar(@PathVariable int fk_presentacion,@RequestBody Proyecto proyec ){
             
-        Persona perso= persoServ.buscarPersona(id_persona);
+        Presentacion presen= presenServ.buscarPresentacion(fk_presentacion);
         
-        proyec.setPersona(perso);
+        proyec.setPresentacion(presen);
         
         proyecServ.crearProyecto(proyec);
     
@@ -77,13 +81,13 @@ public class Cproyecto {
     }
     
     
-    @GetMapping("proyecto/verProyectoPorPersona/{id_persona}")
+    @GetMapping("proyecto/verProyectoPorPresentacion/{fk_presentacion}")
     @ResponseBody
-    public List<Proyecto> verPorPersona(@PathVariable int id_persona){
+    public List<Proyecto> verPorPresentacion(@PathVariable int fk_presentacion){
     
-       Persona perso=persoServ.buscarPersona(id_persona);
+       Presentacion presen=presenServ.buscarPresentacion(fk_presentacion);
        
-       return proyecServ.buscarPorPersona(perso);
+       return proyecServ.buscarPorPresentacion(presen);
     }
     
     

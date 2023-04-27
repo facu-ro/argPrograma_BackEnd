@@ -3,8 +3,10 @@ package com.argprograma.argprograma.controller;
 
 import com.argprograma.argprograma.model.Habilidad;
 import com.argprograma.argprograma.model.Persona;
+import com.argprograma.argprograma.model.Presentacion;
 import com.argprograma.argprograma.service.habilidadService;
 import com.argprograma.argprograma.service.personaService;
+import com.argprograma.argprograma.service.presentacionService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -13,26 +15,28 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
+@RequestMapping("/api")
 public class Chabilidad {
     
     @Autowired
     private habilidadService habiServ;
     
     @Autowired
-    private personaService persoServ;
+    private presentacionService presenServ;
     
     
     
-    @PostMapping("habilidad/nuevaHabilidad-persona/{id_persona}")
-    public void agregar(@PathVariable int id_persona,@RequestBody Habilidad habi){
+    @PostMapping("habilidad/nuevaHabilidad-Presentacion/{fk_presentacion}")
+    public void agregar(@PathVariable int fk_presentacion,@RequestBody Habilidad habi){
         
-       Persona perso= persoServ.buscarPersona(id_persona);
+       Presentacion presen= presenServ.buscarPresentacion(fk_presentacion);
        
-       habi.setPersona(perso);
+      habi.setPresentacion(presen);
         
        habiServ.crearHabilidad(habi);
     }
@@ -57,7 +61,7 @@ public class Chabilidad {
         
         Habilidad habiEdit= habiServ.buscarHabilidad( habi.getId_habilidad() );
         
-        habiEdit.setHabilidad( habi.getHabilidad() );
+        habiEdit.setDescripcion_habilidad(habi.getDescripcion_habilidad());
         habiEdit.setImagen( habi.getImagen() );
         habiEdit.setPorcentaje( habi.getPorcentaje() );
         
@@ -73,13 +77,13 @@ public class Chabilidad {
     }
     
     
-    @GetMapping("habilidad/verHabilidadPorPersona/{id_persona}")
+    @GetMapping("habilidad/verHabilidadPorPresentacion/{fk_presentacion}")
     @ResponseBody
-    public List<Habilidad> verPorPersona(@PathVariable int id_persona){
+    public List<Habilidad> verPorPresentacion(@PathVariable int fk_presentacion){
     
-       Persona perso=persoServ.buscarPersona(id_persona);
+       Presentacion presen=presenServ.buscarPresentacion(fk_presentacion);
        
-       return habiServ.buscarPorPersona(perso);
+       return habiServ.buscarPorPresentacion(presen);
     }
     
 }

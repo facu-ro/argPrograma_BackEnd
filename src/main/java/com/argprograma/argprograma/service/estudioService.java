@@ -3,6 +3,7 @@ package com.argprograma.argprograma.service;
 
 import com.argprograma.argprograma.model.Estudio;
 import com.argprograma.argprograma.model.Persona;
+import com.argprograma.argprograma.model.Presentacion;
 import com.argprograma.argprograma.repository.IestudioRepository;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,9 +43,9 @@ public class estudioService {
     }
     
     
-    public List<Estudio> buscarPorPersona(Persona perso){
+    public List<Estudio> buscarPorPresentacion(Presentacion presentacion){
         
-        return estudioRepo.findByPersona(perso);
+        return estudioRepo.findByPresentacion(presentacion);
     
     }
     

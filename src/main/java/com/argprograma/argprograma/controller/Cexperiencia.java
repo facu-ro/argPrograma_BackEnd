@@ -3,8 +3,10 @@ package com.argprograma.argprograma.controller;
 
 import com.argprograma.argprograma.model.Experiencia;
 import com.argprograma.argprograma.model.Persona;
+import com.argprograma.argprograma.model.Presentacion;
 import com.argprograma.argprograma.service.experienciaService;
 import com.argprograma.argprograma.service.personaService;
+import com.argprograma.argprograma.service.presentacionService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -27,22 +29,27 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @RestController
 //@RequestMapping("/experiencia")  {"http://localhost:4200"} , allowCredentials="false"
 //@CrossOrigin( origins="http://localhost:4200")
+
+@RequestMapping("/api")
+
+
+
 public class Cexperiencia {
     
     @Autowired
     private experienciaService expeServ;
     
     @Autowired
-    private personaService persoServ;
+    private presentacionService presenServ;
     
+    //presentacion
     
-    
-    @PostMapping("experiencia/nuevaExperencia-Persona/{id_persona}")
-    public void agregar(@PathVariable int id_persona,@RequestBody Experiencia expe){
+    @PostMapping("experiencia/nuevaExperencia-Presentacion/{fk_presentacion}")
+    public void agregar(@PathVariable int fk_presentacion,@RequestBody Experiencia expe){
 
-        Persona perso= persoServ.buscarPersona(id_persona);
+        Presentacion presen= presenServ.buscarPresentacion(fk_presentacion);
         
-        expe.setPersona(perso);
+        expe.setPresentacion(presen);
         
         expeServ.crearExperiencia(expe);
     }
@@ -78,6 +85,7 @@ public class Cexperiencia {
         expeEdit.setPuesto( expe.getPuesto() );
         expeEdit.setUrl( expe.getUrl() );
         
+        
         expeServ.editarExperiencia(expeEdit);
     }
     
@@ -91,13 +99,13 @@ public class Cexperiencia {
     }
     
     
-    @GetMapping("experiencia/verExperienciaPorPersona/{id_persona}")
+    @GetMapping("experiencia/verExperienciaPorPresentacion/{fk_presentacion}")
     @ResponseBody
-    public List<Experiencia> verPorPersona(@PathVariable int id_persona){
+    public List<Experiencia> verPorPresentacion(@PathVariable int fk_presentacion){
     
-       Persona perso=persoServ.buscarPersona(id_persona);
+       Presentacion presen=presenServ.buscarPresentacion(fk_presentacion);
        
-       return expeServ.buscarPorPersona(perso);
+       return expeServ.buscarPorPresentacion(presen);
     }
     
     

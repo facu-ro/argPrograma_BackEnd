@@ -3,6 +3,7 @@ package com.argprograma.argprograma.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.sun.istack.NotNull;
+import java.io.Serializable;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -20,7 +21,7 @@ import org.hibernate.annotations.OnDeleteAction;
 
 @Getter @Setter
 @Entity
-public class Estudio {
+public class Estudio /*implements Serializable*/{
     
   @Id
   @GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -41,22 +42,22 @@ public class Estudio {
     
     
     @ManyToOne(fetch=FetchType.LAZY, /*cascade=CascadeType.ALL,*/ optional=false)
-    @JoinColumn(name="fk_persona",referencedColumnName="id_persona")
+    @JoinColumn(name="fk_presentacion",referencedColumnName="fk_persona")
     //@OnDelete(action = OnDeleteAction.CASCADE)
     
     @JsonIgnore
-    private Persona persona;
+    private Presentacion presentacion;
     
     public Estudio(){}
 
-    public Estudio( String titulo, String estado, String descripcion, String imagen, String url, String institucion, Persona persona){
+    public Estudio( String titulo, String estado, String descripcion, String imagen, String url, String institucion, Presentacion presentacion){
         this.titulo = titulo;
         this.estado = estado;
         this.descripcion = descripcion;
         this.imagen = imagen;
         this.url = url;
         this.institucion = institucion;
-        this.persona = persona;
+        this.presentacion = presentacion;
     }
 
     

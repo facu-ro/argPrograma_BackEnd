@@ -33,28 +33,25 @@ public class RedSocial {
   //private int fk_persona;
 
   
-  @ManyToOne(fetch=FetchType.LAZY, /*cascade=CascadeType.ALL,*/ optional=false)
-  @JoinColumn(name="fk_persona",referencedColumnName="id_persona", insertable=true, nullable=true, updatable=true)
-  //@OnDelete(action = OnDeleteAction.CASCADE)
-  @JsonIgnore
-  private Persona persona;
+ @ManyToOne(fetch=FetchType.LAZY, /*cascade=CascadeType.ALL,*/ optional=false)
+ @JoinColumn(name="fk_presentacion",referencedColumnName="fk_persona")
+   //@OnDelete(action = OnDeleteAction.CASCADE)
+ @JsonIgnore
+   private Presentacion presentacion;
   
   public RedSocial(){}
 
-  public RedSocial(String descripcion, String url, String icono, Persona persona){
+  public RedSocial(String descripcion, String url, String icono, Presentacion presentacion){
       
         this.descripcion = descripcion;
         this.url = url;
         this.icono = icono;
-        this.persona = persona;
+        this.presentacion = presentacion;
     }
 
  
 
- public void setPersonaid(int personaid) {
-        persona.setId_persona(personaid);
-    
- }
+
 
   
 }

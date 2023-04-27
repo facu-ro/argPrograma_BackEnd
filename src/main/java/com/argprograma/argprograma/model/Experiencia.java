@@ -22,22 +22,22 @@ import org.hibernate.annotations.OnDeleteAction;
 
 @Getter @Setter
 @Entity
-
 public class Experiencia {
     
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private int id_experiencia;
     
-    //@NotNull
+    //@NotNull 
     private String puesto;
     
+    //"yyyy-MM-dd"
     @Temporal(javax.persistence.TemporalType.DATE)
-    @JsonFormat(pattern="yyyy-MM-dd")
+    @JsonFormat(pattern="dd-MM-yyyy")
     private Date inicio;
     
     @Temporal(javax.persistence.TemporalType.DATE)
-    @JsonFormat(pattern="yyyy-MM-dd")
+    @JsonFormat(pattern="dd-MM-yyyy")
     private Date fin;
     
     @Lob
@@ -52,14 +52,14 @@ public class Experiencia {
     //private int fk_persona;
 
     @ManyToOne(fetch=FetchType.LAZY, /* cascade=CascadeType.ALL*/ optional=false)
-    @JoinColumn(name="fk_persona",referencedColumnName="id_persona",insertable=true, nullable=true, updatable=true)
+    @JoinColumn(name="fk_presentacion",referencedColumnName="fk_persona",insertable=true, nullable=true, updatable=true)
     //@OnDelete(action = OnDeleteAction.CASCADE)
     @JsonIgnore
-    private Persona persona;
+    private Presentacion presentacion;
     
     public Experiencia(){}
 
-    public Experiencia(String puesto, Date inicio, Date fin, String descripcion, String imagen, String url, String empresa, Persona persona){
+    public Experiencia(String puesto, Date inicio, Date fin, String descripcion, String imagen, String url, String empresa, Presentacion presentacion){
        
         this.puesto = puesto;
         this.inicio = inicio;
@@ -68,7 +68,7 @@ public class Experiencia {
         this.imagen = imagen;
         this.url = url;
         this.empresa = empresa;
-        this.persona = persona;
+        this.presentacion = presentacion;
     }
     
    

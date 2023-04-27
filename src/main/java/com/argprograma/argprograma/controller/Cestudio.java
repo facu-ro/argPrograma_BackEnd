@@ -3,8 +3,10 @@ package com.argprograma.argprograma.controller;
 
 import com.argprograma.argprograma.model.Estudio;
 import com.argprograma.argprograma.model.Persona;
+import com.argprograma.argprograma.model.Presentacion;
 import com.argprograma.argprograma.service.estudioService;
 import com.argprograma.argprograma.service.personaService;
+import com.argprograma.argprograma.service.presentacionService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -23,15 +25,15 @@ public class Cestudio {
     private estudioService estudioServ;
     
     @Autowired
-    private personaService persoServ;
+    private presentacionService presenServ;
     
     
-    @PostMapping("estudio/nuevoEstudio/{id_persona}")
-    public void agregar(@PathVariable int id_persona,@RequestBody Estudio estu ){
+    @PostMapping("estudio/nuevoEstudio/{fk_presentacion}")
+    public void agregar(@PathVariable int fk_presentacion,@RequestBody Estudio estu ){
         
-       Persona perso= persoServ.buscarPersona(id_persona);
+       Presentacion presentacion= presenServ.buscarPresentacion(fk_presentacion);
         
-       estu.setPersona(perso);
+       estu.setPresentacion(presentacion);
         
        estudioServ.crearEstudio(estu);
     }
@@ -67,14 +69,14 @@ public class Cestudio {
     }
     
     
-    @GetMapping("estudio/estudioPorPersona/{id_persona}")
+    @GetMapping("estudio/estudioPorPresentacion/{fk_presentacion}")
     @ResponseBody
-    public List<Estudio> verPorPersona(@PathVariable int id_persona){
+    public List<Estudio> verPorPresentacion(@PathVariable int fk_presentacion){
     
         
-       Persona perso=persoServ.buscarPersona(id_persona);
+       Presentacion presen=presenServ.buscarPresentacion(fk_presentacion);
        
-       return estudioServ.buscarPorPersona(perso);
+       return estudioServ.buscarPorPresentacion(presen);
     
     }
     

@@ -2,6 +2,7 @@
 package com.argprograma.argprograma.service;
 
 import com.argprograma.argprograma.model.Persona;
+import com.argprograma.argprograma.model.Presentacion;
 import com.argprograma.argprograma.model.RedSocial;
 import com.argprograma.argprograma.repository.IredsocialRepository;
 import java.util.List;
@@ -41,10 +42,10 @@ public class redSocialService {
         redSocialRepo.save(red);
     }
     
-    public List<RedSocial> buscarPorPersona(Persona perso){
+    public List<RedSocial> buscarPorPresentacion(Presentacion presen){
         
         
-        return redSocialRepo.findByPersona(perso);
+        return redSocialRepo.findByPresentacion(presen);
     
        
     }

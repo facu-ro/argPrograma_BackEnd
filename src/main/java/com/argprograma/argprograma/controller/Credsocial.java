@@ -2,8 +2,10 @@
 package com.argprograma.argprograma.controller;
 
 import com.argprograma.argprograma.model.Persona;
+import com.argprograma.argprograma.model.Presentacion;
 import com.argprograma.argprograma.model.RedSocial;
 import com.argprograma.argprograma.service.personaService;
+import com.argprograma.argprograma.service.presentacionService;
 import com.argprograma.argprograma.service.redSocialService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,24 +15,26 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
+@RequestMapping("/api")
 class Credsocial {
     
     @Autowired
     private redSocialService redServ;
     
     @Autowired
-    private personaService persoServ;
+    private presentacionService presenServ;
     
-    @PostMapping("nuevaRed/red-persona/{id_persona}")
-    public void agregar(@PathVariable int id_persona,@RequestBody RedSocial red ){
+    @PostMapping("nuevaRed/red-Presentacion/{fk_presentacion}")
+    public void agregar(@PathVariable int fk_presentacion,@RequestBody RedSocial red ){
        
-        Persona perso= persoServ.buscarPersona(id_persona);
+       Presentacion presen= presenServ.buscarPresentacion(fk_presentacion);
         
-        red.setPersona(perso);
+       red.setPresentacion(presen);
      
        redServ.crearRedSocial(red);
     }
@@ -71,14 +75,14 @@ class Credsocial {
     }
     
     
-    @GetMapping("RedPorPersona/{id}")
+    @GetMapping("RedPorPresentacion/{id}")
     @ResponseBody
-    public List<RedSocial> verPorPersona(@PathVariable int id){
+    public List<RedSocial> verPorPresentacion(@PathVariable int id){
     
         
-       Persona perso=persoServ.buscarPersona(id);
+       Presentacion presen=presenServ.buscarPresentacion(id);
        
-       return redServ.buscarPorPersona(perso);
+       return redServ.buscarPorPresentacion(presen);
     }
     
 }

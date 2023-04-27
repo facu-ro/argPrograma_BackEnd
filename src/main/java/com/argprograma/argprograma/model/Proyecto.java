@@ -35,20 +35,20 @@ public class Proyecto{
   
   //@NotNull
   //private int fk_persona;
-    @ManyToOne(fetch=FetchType.LAZY,/* cascade=CascadeType.ALL,*/ optional=false)
-    @JoinColumn(name="fk_persona",referencedColumnName="id_persona")
-   // @OnDelete(action = OnDeleteAction.CASCADE)
-    @JsonIgnore
-    private Persona persona;
+  @ManyToOne(fetch=FetchType.LAZY, /*cascade=CascadeType.ALL,*/ optional=false)
+   @JoinColumn(name="fk_presentacion",referencedColumnName="fk_persona")
+   //@OnDelete(action = OnDeleteAction.CASCADE)
+   @JsonIgnore
+   private Presentacion presentacion;
   
   public Proyecto(){}
 
-  public Proyecto(String titulo, String descripcion, String imagen, String url, Persona persona){
+  public Proyecto(String titulo, String descripcion, String imagen, String url, Presentacion presentacion){
         this.titulo = titulo;
         this.descripcion = descripcion;
         this.imagen = imagen;
         this.url = url;
-        this.persona = persona;
+        this.presentacion = presentacion;
     }
 
  

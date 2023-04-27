@@ -10,7 +10,11 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 public class ArgProgramaApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(ArgProgramaApplication.class, args);
+                
+       //        System.setProperty("spring.devtools.restart.enabled", "false");
+           
+                
+                SpringApplication.run(ArgProgramaApplication.class, args);
                 
                 
                 System.out.println("hola");

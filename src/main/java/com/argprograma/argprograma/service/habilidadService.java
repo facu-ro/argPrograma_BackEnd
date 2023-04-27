@@ -3,6 +3,7 @@ package com.argprograma.argprograma.service;
 
 import com.argprograma.argprograma.model.Habilidad;
 import com.argprograma.argprograma.model.Persona;
+import com.argprograma.argprograma.model.Presentacion;
 import com.argprograma.argprograma.repository.IhabilidadRepository;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,15 +40,15 @@ public class habilidadService {
        return habilidadRepo.findById(id).orElse(null);
     }
     
-    public void editarHabilidad(Habilidad pers){
+    public void editarHabilidad(Habilidad presen){
     
-        habilidadRepo.save(pers);
+        habilidadRepo.save(presen);
     }
     
     
-    public List<Habilidad> buscarPorPersona(Persona perso){
+    public List<Habilidad> buscarPorPresentacion(Presentacion presen){
         
-        return habilidadRepo.findByPersona(perso);
+        return habilidadRepo.findByPresentacion(presen);
     
     }
     
