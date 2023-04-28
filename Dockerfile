@@ -1,5 +1,5 @@
 
-FROM openjdk:1.8
+FROM openjdk:8
 
 COPY target/arg-programa-0.0.1-SNAPSHOT.jar app.jar
 
