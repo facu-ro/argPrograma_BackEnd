@@ -27,9 +27,7 @@ public class Cpresentacion {
     @Autowired
     private personaService persoServ;
     
-    //@PathVariable int id_persona,
-    //@RequestBody Persona pers
-    //@RequestBody int id_persona
+    
     @PostMapping("nuevaPresentacion/{id_persona}/presentacion")
     public void agregar(@PathVariable("id_persona") int id_persona,@RequestBody Presentacion presen){
         
