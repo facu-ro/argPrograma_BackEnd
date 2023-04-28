@@ -32,21 +32,10 @@ public class Cpresentacion {
     public void agregar(@PathVariable("id_persona") int id_persona,@RequestBody Presentacion presen){
         
         Persona pers= persoServ.buscarPersona(id_persona);
-        
-        //Presentacion presenEditar=new Presentacion();
-        
-       // presenEditar.setFk_persona(pers.getId_persona());
        
-       presen.setPersona(pers);
+        presen.setPersona(pers);
        
-       /*
-        presenEditar.setPersona(pers);
-        presenEditar.setApellido(presen.getApellido());
-        presenEditar.setNombre(presen.getNombre());
-        presenEditar.setBanner(presen.getBanner());
-        presenEditar.setDescripcion(presen.getDescripcion());
-        presenEditar.setFoto(presen.getFoto());
-        */
+    
         presenServ.crearPresentacion(presen);
     }
     
