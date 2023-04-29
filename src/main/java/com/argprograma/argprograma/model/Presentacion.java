@@ -33,7 +33,7 @@ public class Presentacion implements Serializable{
     @Id
    // @GeneratedValue(strategy=GenerationType.IDENTITY)
   // @Column(name="fk_persona",insertable=true, nullable=true, updatable=true)
-  // private int id_presentacion;
+   //private int id_presentacion;
     private int fk_persona;
    // @JoinColumn(name="fk_persona",referencedColumnName="id_persona",insertable=true, nullable=true, updatable=true)
     //@OnDelete(action = OnDeleteAction.CASCADE)
@@ -52,6 +52,7 @@ public class Presentacion implements Serializable{
     
     private String banner;
     
+    //name="fk_persona",
     @JsonIgnore
     @MapsId
     @OneToOne()
