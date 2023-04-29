@@ -52,7 +52,7 @@ public class Presentacion implements Serializable{
     
     private String banner;
     
-    //name="fk_persona",
+   
     @JsonIgnore
     @MapsId
     @OneToOne()
