@@ -10,4 +10,6 @@ import org.springframework.stereotype.Repository;
 public interface IpersonaRepository extends JpaRepository <Persona, Integer> {
     
     public Persona findByEmailAndPassword(String email, String password);
+    
+    public Persona findByEmail(String email);
 }

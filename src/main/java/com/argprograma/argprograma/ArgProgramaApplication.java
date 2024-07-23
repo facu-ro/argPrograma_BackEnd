@@ -22,13 +22,13 @@ public class ArgProgramaApplication {
                 
 	}
         
-        //"http://localhost:4200"
+        //"http://localhost:4200" "https://mi-portfolio-front.web.app"
     @Bean
     public WebMvcConfigurer corsConfigurer() {
 	return new WebMvcConfigurer() {
 	@Override
 	public void addCorsMappings(CorsRegistry registry) {
-	    registry.addMapping("/**").allowedOrigins("https://mi-portfolio-front.web.app")
+	    registry.addMapping("/**").allowedOrigins("http://localhost:4200")
                     .allowedMethods("*")
                     .allowedHeaders("*");
 		

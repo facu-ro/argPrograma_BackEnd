@@ -41,6 +41,7 @@ public class Persona implements Serializable{
     
     private String password;
     
+    private String password_email;
 
     
     @OneToOne(mappedBy="persona", cascade = CascadeType.ALL, fetch=FetchType.LAZY)
@@ -54,11 +55,12 @@ public class Persona implements Serializable{
     
     public Persona(){}
 
-    public Persona(String user_name, String email, String password) {
+    public Persona(String user_name, String email, String password, String password_email){
         
         this.user_name = user_name;
         this.email = email;
         this.password = password;
+        this.password_email=password_email;
     }
     
    

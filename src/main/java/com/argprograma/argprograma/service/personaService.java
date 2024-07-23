@@ -36,6 +36,11 @@ public class personaService  {
         return personaRepo.findById(id).orElse(null);
     }
     
+    public Persona buscarPersona(String email){
+        
+        return personaRepo.findByEmail(email);
+    }
+    
     public void editarPersona(Persona pers){
     
         personaRepo.save(pers);
