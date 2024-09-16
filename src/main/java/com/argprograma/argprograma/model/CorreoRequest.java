@@ -3,6 +3,7 @@ package com.argprograma.argprograma.model;
 
 
 public class CorreoRequest {
+    
     private String destinatario;
     private String asunto;
     private String mensaje;
