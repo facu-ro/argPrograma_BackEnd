@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: com.argprograma.argprograma.ArgProgramaApplicationTests
 -------------------------------------------------------------------------------
-Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 116.977 s - in com.argprograma.argprograma.ArgProgramaApplicationTests
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 81.515 s - in com.argprograma.argprograma.ArgProgramaApplicationTests
