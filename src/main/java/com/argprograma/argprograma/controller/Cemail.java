@@ -4,6 +4,8 @@ package com.argprograma.argprograma.controller;
 
 import com.argprograma.argprograma.model.CorreoRequest;
 import com.argprograma.argprograma.service.IEmailService;
+import java.util.HashMap;
+import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -22,14 +24,15 @@ public class Cemail {
     IEmailService emailService;
 
     @PostMapping("/enviar-correo")
-    public ResponseEntity<String> enviarCorreo(@RequestBody CorreoRequest correoRequest) {
+    public ResponseEntity<Map<String, String>> enviarCorreo(@RequestBody CorreoRequest correoRequest) {
+         Map<String, String> response = new HashMap<>();
         try {
-            
-            
             emailService.enviarCorreo(correoRequest);
-            return new ResponseEntity<>("Correo enviado exitosamente.", HttpStatus.OK);
+            response.put("message", "Correo enviado exitosamente.");
+            return new ResponseEntity<>(response, HttpStatus.OK);
         } catch (Exception e) {
-            return new ResponseEntity<>("Error al enviar el correo: " + e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+            response.put("message", "Error al enviar el correo: " + e.getMessage());
+            return new ResponseEntity<>(response, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 }
