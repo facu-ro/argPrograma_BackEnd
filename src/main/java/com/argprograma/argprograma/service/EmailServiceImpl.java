@@ -31,7 +31,7 @@ public class EmailServiceImpl implements IEmailService {
             helper.setReplyTo("jazminrocio@gmail.com");
             //helper.setFrom(correoRequest.getDestinatario());  //"jazminrocio1998@gmail.com"
             helper.setTo("95.rodriguez.facundo@gmail.com");
-            helper.setSubject("probando email java"); //correoRequest.getAsunto()
+            helper.setSubject(correoRequest.getAsunto()); //"probando email java"
            
             // Procesar la plantilla Thymeleaf
            /* Context context = new Context();
@@ -39,9 +39,10 @@ public class EmailServiceImpl implements IEmailService {
             String contenidoHtml = templateEngine.process("email", context);
 
             helper.setText(contenidoHtml, true); */
-            
+            correoRequest.setMensaje("Enviado desde: " + correoRequest.getDestinatario() + ". \n" + correoRequest.getMensaje() );
             helper.setText(correoRequest.getMensaje(), true);
             this.javaMailSender.send(message);
+        
         } catch (Exception e) {
             throw new RuntimeException("Error al enviar el correo: " + e.getMessage(), e);
         }
