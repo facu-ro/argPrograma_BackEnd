@@ -27,8 +27,8 @@ public class EmailServiceImpl implements IEmailService {
             MimeMessageHelper helper = new MimeMessageHelper(message, true, "UTF-8");
             
             //correoRequest.getDestinatario()
-            System.out.println(correoRequest.getDestinatario());
-            helper.setReplyTo("jazminrocio@gmail.com");
+            System.out.println(correoRequest.getDestinatario() + " se envio");
+            helper.setReplyTo(correoRequest.getDestinatario());
             //helper.setFrom(correoRequest.getDestinatario());  //"jazminrocio1998@gmail.com"
             helper.setTo("95.rodriguez.facundo@gmail.com");
             helper.setSubject(correoRequest.getAsunto()); //"probando email java"
